@@ -5,9 +5,9 @@
 //  Created by Саша Восколович on 16.03.2025.
 //
 
-import Foundation
+import Observation
 
-var landmarks: [Landmark] = load("landmarkData.json")
+import Foundation
 
 func load<T: Decodable>(_ filename: String) -> T {
     
@@ -30,4 +30,10 @@ func load<T: Decodable>(_ filename: String) -> T {
     } catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
+}
+
+@Observable
+final class ModelData {
+    
+    var landmarks: [Landmark] = load("landmarkData.json")
 }
