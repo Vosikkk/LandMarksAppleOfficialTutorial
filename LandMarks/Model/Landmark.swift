@@ -1,5 +1,5 @@
 //
-//  LandMark.swift
+//  Landmark.swift
 //  LandMarks
 //
 //  Created by Саша Восколович on 16.03.2025.
@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct LandMark: Codable, Hashable {
+struct Landmark: Codable, Hashable, Identifiable {
     
     var id: Int
     var name: String
     var park: String
     var state: String
     var description: String
+    var isFavorite: Bool 
     
     private var imageName: String
     
