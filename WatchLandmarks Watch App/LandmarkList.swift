@@ -1,14 +1,13 @@
 //
 //  LandmarkList.swift
-//  LandMarks
+//  WatchLandmarks Watch App
 //
-//  Created by Саша Восколович on 16.03.2025.
+//  Created by Саша Восколович on 19.03.2025.
 //
 
 import SwiftUI
 
 struct LandmarkList: View {
-    
     @Environment(ModelData.self) private var modelData
     
     @State private var showFavoritesOnly: Bool = false
@@ -40,14 +39,11 @@ struct LandmarkList: View {
             }
             .animation(.default, value: filteredLandmarks)
             .navigationTitle("Landmarks")
-            .frame(minWidth: maxWidth)
             
         } detail: {
             Text("Select a landmark")
         }
     }
-    
-    private let maxWidth: CGFloat = 300
 }
 
 #Preview {
