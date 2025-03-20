@@ -15,33 +15,17 @@ struct LandmarkList: View {
     
     @State private var filter: FilterCategory = .all
     
-    enum FilterCategory: String, CaseIterable, Identifiable {
-        
-        case all = "All"
-        case lakes = "Lakes"
-        case rivers = "Rivers"
-        case mountains = "Mountains"
-        
-        var id: Self { self }
-    }
+    @State private var selectedLandmark: Landmark?
     
-    var filteredLandmarks: [Landmark] {
-        modelData.landmarks.filter { landmark in
-            (!showFavoritesOnly || landmark.isFavorite) &&
-            (filter == .all || filter.rawValue == landmark.category.rawValue )
-        }
-    }
-    
-    var title: String {
-        let title = filter == .all ? "Landmarks" : filter.rawValue
-        return showFavoritesOnly ? "Favorite \(title)" : title
-    }
+   
     
     var body: some View {
         
+        @Bindable var modelData = modelData
+        
         NavigationSplitView {
             
-            List {
+            List(selection: $selectedLandmark) {
                 
                 ForEach(filteredLandmarks) { landmark in
                     
@@ -50,6 +34,7 @@ struct LandmarkList: View {
                     } label: {
                         LandmarkRow(landmark: landmark)
                     }
+                    .tag(landmark)
                 }
             }
             .animation(.default, value: filteredLandmarks)
@@ -80,10 +65,43 @@ struct LandmarkList: View {
         } detail: {
             Text("Select a landmark")
         }
+        .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
     }
     
     private let minWidth: CGFloat = 300
 }
+
+
+extension LandmarkList {
+   
+    enum FilterCategory: String, CaseIterable, Identifiable {
+        
+        case all = "All"
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+        
+        var id: Self { self }
+    }
+    
+    var filteredLandmarks: [Landmark] {
+        modelData.landmarks.filter { landmark in
+            (!showFavoritesOnly || landmark.isFavorite) &&
+            (filter == .all || filter.rawValue == landmark.category.rawValue )
+        }
+    }
+    
+    var title: String {
+        let title = filter == .all ? "Landmarks" : filter.rawValue
+        return showFavoritesOnly ? "Favorite \(title)" : title
+    }
+    
+    var index: Int? {
+        modelData.landmarks.firstIndex(where: { $0.id == selectedLandmark?.id })
+    }
+}
+
+
 
 #Preview {
     LandmarkList()

@@ -41,6 +41,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		38A3311E2D8C257F00A01CED /* Exceptions for "MacLandmarks" folder in "LandMarks" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LandmarkCommands.swift,
+			);
+			target = 381C47C42D87064700B9D449 /* LandMarks */;
+		};
 		38C123692D8B2485006577F2 /* Exceptions for "LandMarks" folder in "MacLandmarks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -91,6 +98,9 @@
 		};
 		38C1234E2D8B2139006577F2 /* MacLandmarks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				38A3311E2D8C257F00A01CED /* Exceptions for "MacLandmarks" folder in "LandMarks" target */,
+			);
 			path = MacLandmarks;
 			sourceTree = "<group>";
 		};
