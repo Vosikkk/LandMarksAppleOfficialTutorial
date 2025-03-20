@@ -36,12 +36,15 @@ struct LandmarkDetail: View {
                 .padding()
             }
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: vLeadSpacing) {
                 
-                HStack(spacing: 24) {
+                HStack(spacing: hSpacing) {
                     
                     CircleImage(image: landmark.image.resizable())
-                        .frame(width: 160, height: 160)
+                        .frame(
+                            width: circleImageWidth,
+                            height: circleImageHeight
+                        )
                     
                     
                     VStack(alignment: .leading) {
@@ -74,16 +77,25 @@ struct LandmarkDetail: View {
                 Text(landmark.description)
             }
             .padding()
-            .frame(maxWidth: 700)
-            .offset(y: -50)
+            .frame(maxWidth: maxWidth)
+            .offset(y: offset)
         }
         .navigationTitle(landmark.name)
     }
     
     private let mapHeight: CGFloat = 300
     
-    private let circlePadding: CGFloat = -130
-    private let circleYOffset: CGFloat = -130
+    private let circleImageWidth: CGFloat = 160
+    private let circleImageHeight: CGFloat = 160
+    
+    private let offset: CGFloat = -50
+    
+    private let vLeadSpacing: CGFloat = 20
+    
+    private let hSpacing: CGFloat = 24
+    
+    private let maxWidth: CGFloat = 700
+    
 }
 
 #Preview {

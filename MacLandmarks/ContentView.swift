@@ -10,11 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     
-    
     var body: some View {
         LandmarkList()
-            .frame(width: 700, height: 300)
+            .frame(minWidth: minWidth, minHeight: minHeight)
     }
+    
+    private let minWidth: CGFloat = 700
+    private let minHeight: CGFloat = 300
 }
 
 #Preview {
